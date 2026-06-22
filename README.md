@@ -4,15 +4,11 @@ A script to connect to the GitHub graphQL api to bulk delete closed GH issues
 
 >  Deletion is **irreversible**. Always dry-run first.
 
----
-
 ## Requirements
 
 - Python 3.7+
 - `requests` library — `pip install requests`
 - A GitHub classic PAT (see below)
-
----
 
 ## Setup
 
