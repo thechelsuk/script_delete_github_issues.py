@@ -7,14 +7,17 @@ A script to connect to the GitHub graphQL api to bulk delete closed GH issues
 ## Requirements
 
 - Python 3.7+
-- `requests` library — `pip install requests`
+- `requests` — `pip install requests`
 - A GitHub classic PAT (see below)
 
 ## Setup
 
-### 1. Clone / download the script
+### 1. Clone the repo
 
-Place `delete_issues.py` and create `config.py` in the same directory.
+```bash
+git clone https://github.com/your-org/your-repo.git
+cd your-repo
+```
 
 ### 2. Create a classic PAT
 
@@ -26,7 +29,9 @@ Fine-grained PATs **do not support** issue deletion — a classic token is requi
    - `delete_repo`
 3. Copy the token immediately — it won't be shown again
 
-### 3. Create `config.py`
+### 3. Populate `config.py`
+
+A `config.py` template is included in the repo — fill in your values:
 
 ```python
 GH_OWNER = "your-org-or-username"
@@ -35,23 +40,19 @@ GH_USER  = "your-github-username"
 GH_PAT   = "ghp_xxxxxxxxxxxxxxxxxxxx"
 ```
 
-### 4. Add `config.py` to `.gitignore`
+> `config.py` is already in `.gitignore` — do not remove it from there or commit your credentials.
 
-Create or append to `.gitignore` in the project root:
-
-```
-config.py
-```
+---
 
 ## Usage
 
-**Dry run first — prints what would be deleted without making changes:**
+**Dry run first — prints what would be deleted, no changes made:**
 
 ```bash
 python delete_issues.py --dry-run
 ```
 
-**Live run — will prompt for confirmation before proceeding:**
+**Live run — prompts for confirmation before proceeding:**
 
 ```bash
 python delete_issues.py
@@ -62,6 +63,6 @@ python delete_issues.py
 ## Notes
 
 - Only targets `CLOSED` issues — open issues are untouched
-- Handles rate limiting automatically (sleeps and resumes if limit is approached)
-- Logs each deletion with issue number and title
-- Stop at any time with `Ctrl+C` — partial runs cannot be undone
+- Rate limiting is handled automatically
+- Each deletion is logged with issue number and title
+- `Ctrl+C` stops the script — any deletions already made cannot be undone
