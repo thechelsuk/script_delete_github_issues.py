@@ -80,7 +80,7 @@ jobs:
               if: |
                   steps.version_changed.outputs.changed == 'true' &&
                   steps.tag_check.outputs.exists == 'false'
-              uses: softprops/action-gh-release@v2
+              uses: softprops/action-gh-release@v3
               with:
                   tag_name: ${{ steps.pkg.outputs.tag }}
                   name: ${{ steps.pkg.outputs.version }}
