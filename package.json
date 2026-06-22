@@ -1,0 +1,11 @@
+{
+  "name": "@thechelsuk/Delete GitHub Issues",
+  "version": "1.0.0",
+  "description": "Deletes closes GitHub Issues using GitHub API",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thechelsuk/script_delete_github_issues.git"
+  },
+  "author": "thechelsuk",
+  "license": "MIT"
+}
