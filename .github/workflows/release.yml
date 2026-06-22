@@ -16,7 +16,7 @@ jobs:
 
         steps:
             - name: Checkout
-              uses: actions/checkout@v7
+              uses: actions/checkout@v4
               with:
                   fetch-depth: 2 # Need at least 2 commits to detect version change
 
@@ -60,7 +60,7 @@ jobs:
                   steps.version_changed.outputs.changed == 'true' &&
                   steps.tag_check.outputs.exists == 'false'
               run: |
-                  MSG=$(git log -1 --pretty=%B)
+                  MSG=$(git log -1 --pretty=%B | grep -v '^Signed-off-by:')
                   # Escape multiline for GitHub output
                   echo "message<<EOF" >> $GITHUB_OUTPUT
                   echo "$MSG" >> $GITHUB_OUTPUT
@@ -80,7 +80,7 @@ jobs:
               if: |
                   steps.version_changed.outputs.changed == 'true' &&
                   steps.tag_check.outputs.exists == 'false'
-              uses: softprops/action-gh-release@v3
+              uses: softprops/action-gh-release@v2
               with:
                   tag_name: ${{ steps.pkg.outputs.tag }}
                   name: ${{ steps.pkg.outputs.version }}
